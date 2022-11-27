@@ -29,7 +29,10 @@ export default function Home() {
         <p className="text-neutral-300 text-sm">Ready to budget your life?</p>
         <div className="grid grid-cols-2 mt-4 gap-4">
           {links.map(({ icon, text, href }, i) => (
-            <div className="bg-primary-300 rounded-xl" key={i}>
+            <div
+              className="bg-primary-300 rounded-xl hover:scale-90 duration-150 ease-linear"
+              key={i}
+            >
               <Link
                 href={href}
                 className="flex flex-col items-center justify-center py-10"
