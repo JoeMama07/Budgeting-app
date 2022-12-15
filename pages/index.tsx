@@ -24,7 +24,7 @@ export default function Home() {
   ];
   return (
     <FullWidthLayout>
-      <section className="p-6">
+      <section className="p-6 pb-12">
         <h1 className="text-xl font-bold">Hi, Tedd</h1>
         <p className="text-neutral-300 text-sm">Ready to budget your life?</p>
         <div className="grid grid-cols-2 mt-4 gap-4">
