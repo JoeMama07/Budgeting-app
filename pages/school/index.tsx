@@ -12,7 +12,7 @@ const items = [
   </Anchor>
 ));
 
-export default function index() {
+export default function SchoolPage() {
   const [value, setValue] = useState<null | string>(null);
 
   const schools = [
@@ -32,13 +32,13 @@ export default function index() {
           label="Choose your school"
           radius={"md"}
         />
-        {value === "natin" && <NATIN />}
+        {value === "natin" && <Natin />}
       </section>
     </FullWidthLayout>
   );
 }
 
-function NATIN() {
+function Natin() {
   const headers = ["Schooljaar", "Uniform", "Vervoer", "Zakgeld"];
 
   return (
