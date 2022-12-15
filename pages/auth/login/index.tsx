@@ -4,7 +4,7 @@ import Loginform from "../../../compontents/Loginform";
 
 export default function index() {
   return (
-    <section className="bg-primary-600 h-screen px-6 py-12">
+    <section className="bg-primary-500 h-screen px-6 py-12">
       <div className="w-full flex flex-col items-center ">
         <div className="w-24 ml-auto mr-auto">
           <Image src="/BudgetBear.png" alt="logo" />
@@ -14,7 +14,7 @@ export default function index() {
             log in
           </h1>
           <Loginform />
-          <p className="mt-4">Don't have an account yet?</p>
+          <p className="mt-4">Don&#39;t have an account yet?</p>
           <div className="text-blue-500 !text-center">
             <Link href="/auth/register">Sign up</Link>
           </div>
