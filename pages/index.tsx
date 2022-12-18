@@ -30,7 +30,7 @@ export default function Home() {
         <div className="grid grid-cols-2 mt-4 gap-4">
           {links.map(({ icon, text, href }, i) => (
             <div
-              className="bg-primary-300 rounded-xl hover:scale-90 duration-150 ease-linear"
+              className="bg-primary-300 rounded-xl hover:scale-95 duration-150 ease-linear"
               key={i}
             >
               <Link
