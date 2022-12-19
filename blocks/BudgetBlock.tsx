@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Button, NumberInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 import BreadCrumb from "../compontents/BreadCrumb";
 import { useBudget } from "../context/budgetContext";
 
@@ -59,6 +60,10 @@ function Budgetsform() {
   const handleSubmit = () => {
     setBudget?.(form.values.budget);
     setWishlistBudget?.(form.values.wishlistBudget);
+    showNotification({
+      message: "Budget updated",
+      color: "green",
+    });
   };
   return (
     <div className="rounded-lg  border-lg shadow-md p-4 bg-">

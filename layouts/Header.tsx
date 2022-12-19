@@ -21,7 +21,7 @@ export default function Header() {
     <>
       <section className="bg-primary-500 flex px-6 justify-between items-center h-20 rounded-b-lg">
         <Link href="/">
-          <div className="w-14 hover:scale-94 ease-in-out duration-150">
+          <div className="w-14 hover:scale-95 ease-in-out duration-150">
             <Image src="/BudgetBear.png" alt="logo" />
           </div>
         </Link>

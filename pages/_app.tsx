@@ -1,4 +1,5 @@
 import { MantineProvider } from "@mantine/core";
+import { NotificationsProvider } from "@mantine/notifications";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { WishlistProvider } from "react-use-wishlist";
@@ -14,9 +15,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <BudgetProvider>
         <MantineProvider withGlobalStyles withNormalizeCSS>
-          <WishlistProvider>
-            <Component {...pageProps} />
-          </WishlistProvider>
+          <NotificationsProvider>
+            <WishlistProvider>
+              <Component {...pageProps} />
+            </WishlistProvider>
+          </NotificationsProvider>
         </MantineProvider>
       </BudgetProvider>
     </>

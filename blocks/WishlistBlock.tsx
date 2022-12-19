@@ -2,12 +2,14 @@ import { Icon } from "@iconify/react";
 import {
   ActionIcon,
   Button,
+  clsx,
   Modal,
   NumberInput,
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { randomId } from "@mantine/hooks";
+import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useWishlist } from "react-use-wishlist";
 import BreadCrumb from "../compontents/BreadCrumb";
@@ -18,6 +20,7 @@ export default function WishlistBlock() {
   const { wishlistBudget } = useBudget();
   const { addWishlistItem, items, wishlistTotal } = useWishlist();
   const [opened, setOpened] = useState(false);
+  const [overBudget, setOverBudget] = useState(false);
 
   const form = useForm({
     initialValues: {
@@ -39,11 +42,18 @@ export default function WishlistBlock() {
     });
 
     addWishlistItem(form.values);
+    showNotification({
+      message: "Item added to wishlist",
+      color: "green",
+    });
   };
 
   useEffect(() => {
     if (wishlistTotal > wishlistBudget) {
       setOpened(true);
+      setOverBudget(!overBudget);
+    } else {
+      setOverBudget(false);
     }
   }, [wishlistTotal]);
 
@@ -136,8 +146,15 @@ export default function WishlistBlock() {
         </Modal>
       </div>
 
-      <div className="flex items-center justify-between bg-primary-500 p-6 text-white font-bold rounded-t-lg">
-        <span className="font-medium">Total</span>
+      <div
+        className={clsx(
+          "flex items-center justify-between bg-primary-500 p-6 text-white font-bold rounded-t-lg",
+          {
+            "text-red-500": overBudget,
+          }
+        )}
+      >
+        <span className="font-medium !text-white">Total</span>
         <span className="font-medium">${wishlistTotal}</span>
       </div>
     </section>
@@ -146,6 +163,15 @@ export default function WishlistBlock() {
 
 function Card({ data }: any) {
   const { removeWishlistItem } = useWishlist();
+
+  const removeItem = () => {
+    removeWishlistItem(data?.id);
+    showNotification({
+      message: "Item removed from wishlist",
+      color: "red",
+    });
+  };
+
   return (
     <div className="flex justify-between gap-4 bg-primary-400 rounded-lg px-4 py-2">
       <span>{data?.item}</span>
@@ -156,7 +182,7 @@ function Card({ data }: any) {
         </div>
         <ActionIcon
           className="group hover:bg-red-500"
-          onClick={() => removeWishlistItem(data.id)}
+          onClick={() => removeItem()}
         >
           <Icon
             icon="fluent:delete-24-regular"
