@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { useLocalStorage } from "@mantine/hooks";
+import { createContext, useContext } from "react";
 
 // interface IUser {
 //   firstname: string;
@@ -12,7 +13,7 @@ import { createContext, useContext, useState } from "react";
 // }
 
 interface IContext {
-  budget?: number;
+  budget: number;
   setBudget?: React.Dispatch<React.SetStateAction<number>>;
 
   wishlistBudget: number;
@@ -25,8 +26,15 @@ export const BudgetContext = createContext<IContext>({
 });
 
 export const BudgetProvider = ({ children }: any) => {
-  const [budget, setBudget] = useState(1000);
-  const [wishlistBudget, setWishlistBudget] = useState(1000);
+  const [budget, setBudget] = useLocalStorage({
+    key: "budget",
+    defaultValue: 0,
+  });
+  const [wishlistBudget, setWishlistBudget] = useLocalStorage({
+    key: "wishlistBudget",
+    defaultValue: 0,
+  });
+
   return (
     <BudgetContext.Provider
       value={{ budget, setBudget, setWishlistBudget, wishlistBudget }}
